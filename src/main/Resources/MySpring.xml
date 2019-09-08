@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+     ">
+
+    <!--引入property-->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!--创建数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${passwerd}"/>
+    </bean>
+    <!--整合的核心-->
+    <!--创建sqlsessionFactry-->
+    <bean id="sqlSessionFactry" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="logImpl" value="org.apache.ibatis.logging.log4j.Log4jImpl"/>
+                <property name="lazyLoadingEnabled" value="true"/>
+            </bean>
+        </property>
+        <!--引入资源文件-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--映射文件-->
+        <!--<property name="mapperLocations" value="classpath:"/>-->
+        <!--别名-->
+        <property name="typeAliasesPackage" value="com.sky.model"/>
+
+    </bean>
+    <!--创建Mapper层-->
+    <bean id="mapperPackory" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactry"/>
+        <property name="basePackage" value="com.sky.mapper"/>
+    </bean>
+    <!--注解扫描-->
+    <context:component-scan base-package="com.sky"/>
+
+    <!--创建事务处理类   切面-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--事物扫描-->
+    <tx:annotation-driven/>
+
+    <!--开启MVC注解驱动-->
+    <mvc:annotation-driven/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--静态资源访问-->
+    <!--<mvc:resources location="/js/" mapping="/js/**"/>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--通过外部容器创建对象
+class:全限定名
+设置lazy-init 设置true 之后创建时间改变get时创建
+       prototype多例模式创建多次   获取时创建   get 时获取
+       singleton:单例模式
+       request ，：再一次请求中有效
+       session：一次会话中有效
+       global _session  :在服务器集群中有效
+-->
+    <!--<bean id="liquor1" class="com.sky.model.Liquor"></bean>
+    <bean id="liquor2" class="com.sky.model.Liquor" scope="prototype"></bean>-->
+    <!--<bean id="liquor3" class="com.sky.model.Liquor" init-method="chushi" destroy-method="xiaohui"></bean>-->
+    <!--<bean id="liquor4" class="com.sky.model.Liquor" scope="prototype" init-method="chushi" destroy-method="xiaohui"></bean>-->
+    <!--创建工厂-->
+    <!--<bean id="factory" class="com.sky.Factory.Factory"></bean>
+    <bean id="liquor5" factory-bean="factory" factory-method="Factoryliquor"></bean>-->
+    <!--<bean id="liquor6" class="com.sky.Factory.StaticFactory" factory-method="StaticFactoryliquor"></bean>-->
+
+    <!--注入参数-->
+    <!--通过index注入     需要考虑顺序问题-->
+    <!--<bean id="liquor7" class="com.sky.model.Liquor">
+        <constructor-arg index="0" value="火星行者"></constructor-arg>
+    </bean>-->
+    <!--<bean id="liquor8" class="com.sky.model.Liquor">
+        <constructor-arg index="0" value="火星行者"></constructor-arg>
+        <constructor-arg index="1" value="英国"></constructor-arg>
+    </bean>-->
+    <!--通过name注入    不需要考虑顺序问题-->
+   <!-- <bean id="liquor9" class="com.sky.model.Liquor">
+        <constructor-arg name="liquor_name" value="火星行者"></constructor-arg>
+        <constructor-arg name="origin" value="英国"></constructor-arg>
+    </bean>-->
+
+</beans>
