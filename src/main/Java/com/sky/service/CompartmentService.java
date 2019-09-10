@@ -31,6 +31,7 @@ public class CompartmentService {
         pageBean.setDatas(compartmentMapper.findByPageCompartment(pageBean));
         return pageBean;
     }
+    //==================================================预定或退订===============================================================
     public Boolean reserveOrUnsubscribe(Compartment compartment){
         return compartmentMapper.reserveOrUnsubscribe(compartment)>0;
     }

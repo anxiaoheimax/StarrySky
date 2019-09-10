@@ -111,7 +111,7 @@
                     /*==============================================异步请求添加数据==============================================*/
                     $.ajax({
                         type:'POST',
-                        url:'Compartment/addCompartment.action',
+                        url:'/Compartment/addCompartment.action',
                         contentType:'application/json;charset=UTF-8',
                         data:JSON.stringify({"compName":compName,"compState":"1","comptype":comptype}),
                         success:function (resdata) {
@@ -138,7 +138,7 @@
  //===================--------------------===========删除===============================================================
                     $.ajax({
                         type:'POST',
-                        url:'Compartment/deleteCompartment.action',
+                        url:'/Compartment/deleteCompartment.action',
                         data:{"compTd":data.compId},
                         success:function (resdata) {
                             console.log(resdata)
@@ -195,7 +195,7 @@
                            /*==============================================异步请求数据==============================================*/
                            $.ajax({
                                type:'POST',
-                               url:'Compartment/reserveOrUnsubscribe.action',
+                               url:'/Compartment/reserveOrUnsubscribe.action',
                                contentType:'application/json;charset=UTF-8',
                                data:JSON.stringify({"compId":data.compId,"compState":"2","reserve_date":reserve_date}),
                                success:function (resdata) {
@@ -214,7 +214,7 @@
     //===============================================退订===========================================================
                    $.ajax({
                        type:'POST',
-                       url:'Compartment/reserveOrUnsubscribe.action',
+                       url:'/Compartment/reserveOrUnsubscribe.action',
                        contentType:'application/json;charset=UTF-8',
                        data:JSON.stringify({"compId":data.compId,"compState":"1","reserve_date":null}),
                        success:function (resdata) {

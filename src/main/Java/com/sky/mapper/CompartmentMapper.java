@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface CompartmentMapper {
     //============================================添加=======================================================
-    @Insert("INSERT INTO compartment(compName,compState,comptype) VALUES(#{compName},1,#{comptype});")
+    @Insert("INSERT INTO compartment(compName,compState,comptype) VALUES(#{compName},1,#{comptype})")
     public int addCompartment(Compartment compartment);
     //==============================================修改=======================================================
     @Update("UPDATE compartment SET compName=#{compName},comptype=#{comptype} WHERE compId=#{compId}")
