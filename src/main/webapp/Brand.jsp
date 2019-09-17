@@ -11,6 +11,11 @@
     <title>Brand</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <script src="/layui/layui.js" charset="utf-8"></script>
+    <style>
+        body{
+            padding:10px;
+        }
+    </style>
 </head>
 <body>
 <div class="demoTable">
@@ -81,6 +86,7 @@
                 ,yes: function(){
                     /*=========================================获取添加表单中的数据======================================*/
                     var brandName = $("#addForm input[name='brandName']").val();
+                    console.log(brandName)
                     /*==============================================异步请求添加数据==============================================*/
                     $.ajax({
                         type:'POST',

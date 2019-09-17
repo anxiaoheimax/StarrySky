@@ -1,5 +1,7 @@
 package com.sky.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 //订单
@@ -12,28 +14,28 @@ public class Order {
     private int compId;
     //订单消费金额
     private int money;
-    //订单详情编号
-    private int detailsId;
+    //结算状态
+    private int payment;
+
     //订单日期
     private Date order_date;
 
     public Order() {
     }
 
-    public Order(int orderId, int uid, int compId, int money, int detailsId, Date order_date) {
-        this.orderId = orderId;
-        Uid = uid;
+    public Order(int Uid, int compId, int money, int payment) {
+        this.Uid = Uid;
         this.compId = compId;
         this.money = money;
-        this.detailsId = detailsId;
-        this.order_date = order_date;
+        this.payment = payment;
     }
 
-    public Order(int uid, int compId, int money, int detailsId, Date order_date) {
-        Uid = uid;
+    public Order(int orderId, int Uid, int compId, int money, int payment, Date order_date) {
+        this.orderId = orderId;
+        this.Uid = Uid;
         this.compId = compId;
         this.money = money;
-        this.detailsId = detailsId;
+        this.payment = payment;
         this.order_date = order_date;
     }
 
@@ -69,20 +71,21 @@ public class Order {
         this.money = money;
     }
 
-    public int getDetailsId() {
-        return detailsId;
-    }
-
-    public void setDetailsId(int detailsId) {
-        this.detailsId = detailsId;
-    }
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getOrder_date() {
         return order_date;
     }
 
     public void setOrder_date(Date order_date) {
         this.order_date = order_date;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
     }
 
     @Override
@@ -92,7 +95,7 @@ public class Order {
                 ", Uid=" + Uid +
                 ", compId=" + compId +
                 ", money=" + money +
-                ", detailsId=" + detailsId +
+                ", payment=" + payment +
                 ", order_date=" + order_date +
                 '}';
     }

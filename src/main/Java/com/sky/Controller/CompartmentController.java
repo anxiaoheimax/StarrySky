@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Compartment")
@@ -73,6 +74,15 @@ public class CompartmentController {
         }else{
             return "no";
         }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/selectcomp.action")
+    public List<Compartment> selectcomp(){
+        List<Compartment> selectcomp = compartmentService.selectcomp();
+        System.out.println("kongxiang:"+selectcomp);
+        return selectcomp;
     }
 
 }

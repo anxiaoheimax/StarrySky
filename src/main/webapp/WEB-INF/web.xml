@@ -10,8 +10,17 @@
         <param-value>classpath:MySpring.xml</param-value>
     </context-param>
 
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>com.sky.filter.SkyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-    <!-- 解决请求参数中文乱码问题 -->
+
+    <!--&lt;!&ndash; 解决请求参数中文乱码问题 &ndash;&gt;
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -23,7 +32,8 @@
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
+
 
 
     <!-- 监听器的配置 -->
@@ -45,5 +55,12 @@
   <servlet-mapping>
     <servlet-name>DispatcherServlet</servlet-name>
     <url-pattern>*.action</url-pattern>
+      <!--欢迎页面-->
   </servlet-mapping>
+    <welcome-file-list>
+    <welcome-file>/Front/index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+    <!--过滤器-->
+
 </web-app>

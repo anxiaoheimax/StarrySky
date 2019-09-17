@@ -31,11 +31,11 @@
         $("#update").click(function () {
             $.ajax({
                 type:'POST',
-                url:'/Liquor/updateLquor.action',
+                url:'/CartItem/addCartItem.action',
                 contentType:'application/json;charset=UTF-8',
                 /*String liquor_name, String origin, Date production_date*/
                 /*int liquorId, int price*/
-                data:'{"liquorId":5,"price":23}',
+                data:'{"liquorId":liquorId,"number":1,"uid":2}',
                 success:function (data) {
                     console.log(data);
                 }

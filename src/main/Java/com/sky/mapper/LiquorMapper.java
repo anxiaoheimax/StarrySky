@@ -9,20 +9,10 @@ import java.util.List;
 
 public interface LiquorMapper {
     //用id查
-    @Select("SELECT liquorId,liquor_name,brandId,origin,price,production_date,alcoholic_strength,kindId\n" +
-            "FROM liquor \n" +
-            "WHERE liquor.`liquorId`=#{liquorId}")
-    @Results(value = {
-            @Result(id = true,property = "liquorId",column = "liquorId"),
-            @Result(property = "liquor_name",column = "liquor_name"),
-            @Result(property = "brand",one = @One(select ="com.sky.mapper.BrandMapper.selectBrand"),column = "brandId"),
-            @Result(property = "origin",column = "origin"),
-            @Result(property = "price",column = "price"),
-            @Result(property = "production_date",column = "production_date"),
-            @Result(property = "alcoholic_strength",column = "alcoholic_strength"),
-            @Result(property = "kind",one = @One(select ="com.sky.mapper.KindMapper.selectKind"),column = "kindId")
+    @Select("SELECT liquorId,liquor_name,brandId,origin,price,production_date,alcoholic_strength,picture,kindId" +
+            " FROM liquor" +
+            " WHERE liquor.`liquorId`=#{liquorId}")
 
-    })
     public Liquor selectliquorById(int id);
     //查总记录数
     @Select("<script>"+
@@ -35,7 +25,7 @@ public interface LiquorMapper {
 
     //===============================================条件分页查================================================================================
     @Select("<script>"+
-            "SELECT liquorid,liquor_name,brand.*,origin,price,production_date,alcoholic_strength,kind.*" +
+            "SELECT liquorid,liquor_name,brand.*,origin,price,production_date,alcoholic_strength,picture,kind.*" +
             "FROM liquor,brand,kind"+
             " WHERE liquor.`brandId`=brand.`brandId`" +
             " AND liquor.`kindId`=kind.`kindId`"+
@@ -52,6 +42,7 @@ public interface LiquorMapper {
             @Result(property = "price",column = "price"),
             @Result(property = "production_date",column = "production_date"),
             @Result(property = "alcoholic_strength",column = "alcoholic_strength"),
+            @Result(property = "picture",column = "picture"),
             @Result(property = "kind",one = @One(select ="com.sky.mapper.KindMapper.selectKind"),column = "kindId")
 
     })

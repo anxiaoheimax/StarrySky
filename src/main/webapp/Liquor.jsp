@@ -10,6 +10,11 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <style>
+        body{
+            padding:10px;
+        }
+    </style>
 </head>
 <body>
 <div class="demoTable">

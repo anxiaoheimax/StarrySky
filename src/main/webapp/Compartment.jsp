@@ -11,6 +11,11 @@
     <title>Compartment</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <script src="/layui/layui.js" charset="utf-8"></script>
+    <style>
+        body{
+            padding:10px;
+        }
+    </style>
 </head>
 <body>
 <div class="demoTable">
@@ -101,7 +106,7 @@
                     '<input type="text" class="layui-input" name="comptype" placeholder="请输入类型" lay-verify="required">' +
                     '</form>' +
                     '</div>'
-                ,btn: '添加酒品'
+                ,btn: '添加'
                 ,btnAlign: 'c' //按钮居中
                 ,shade: 0.3//显示遮罩
                 ,yes: function(){
@@ -183,15 +188,19 @@
                        ,offset: '100px'
                        ,content: '<div style="width:300px;padding:10px">' +
                            '<form id="addForm">' +
-                           '<input type="text" class="layui-input" id="production_date" name="reserve_date" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="required">'+
+                           '<input type="text" class="layui-input" id="production_date" name="reserve_date" placeholder="yyyy-MM-dd" lay-verify="required">'+
+                           '<input type="text" class="layui-input" id="production_time" name="reserve_time" placeholder="HH:mm:ss" lay-verify="required">'+
                            '</form>' +
                            '</div>'
-                       ,btn: '添加酒品'
+                       ,btn: '预定'
                        ,btnAlign: 'c' //按钮居中
                        ,shade: 0.3//显示遮罩
                        ,yes: function(){
                            /*=========================================获取表单中的数据======================================*/
                            var reserve_date = $("#addForm input[name='reserve_date']").val();
+                           var reserve_time = $("#addForm input[name='reserve_time']").val();
+                           var reserve_datetime=strtodatetime(datetostr(reserve_date)+' '+timetostr(reserve_time))
+
                            /*==============================================异步请求数据==============================================*/
                            $.ajax({
                                type:'POST',
@@ -228,11 +237,19 @@
                    });
                }
  //====================================================日期时间选择器=========================================
+                //日期先择
                 laydate.render({
                     elem: '#production_date'
-                    ,type: 'datetime'
+                    ,type: 'date'
                     ,min:1
                     ,max:7
+                });
+               //时间选择
+                laydate.render({
+                    elem: '#production_date'
+                    ,type: 'time'
+                    ,min: '09:30:00'
+                    ,max: '23:30:00'
                 });
             }
 

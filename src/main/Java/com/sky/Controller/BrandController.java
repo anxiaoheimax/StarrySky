@@ -35,6 +35,7 @@ public class BrandController {
     @ResponseBody
     @RequestMapping("/addBrand.action")
     public String addBrand(@RequestBody Brand brand){
+        System.out.println("品牌："+brand);
         Boolean addBrand = brandService.addBrand(brand);
         if(addBrand){
             return "ok";

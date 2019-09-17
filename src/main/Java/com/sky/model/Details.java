@@ -4,18 +4,25 @@ public class Details {
     //详情编号
     private int detailsId;
     //座位号/包间号
-    private int compId;
+    private int orderId;
     //酒品编号
     private int liquorId;
     //单品数量
     private int number;
+    //
 
     public Details() {
     }
 
-    public Details(int detailsId, int compId, int liquorId, int number) {
+    public Details(int orderId, int liquorId, int number) {
+        this.orderId = orderId;
+        this.liquorId = liquorId;
+        this.number = number;
+    }
+
+    public Details(int detailsId, int orderId, int liquorId, int number) {
         this.detailsId = detailsId;
-        this.compId = compId;
+        this.orderId = orderId;
         this.liquorId = liquorId;
         this.number = number;
     }
@@ -28,12 +35,12 @@ public class Details {
         this.detailsId = detailsId;
     }
 
-    public int getCompId() {
-        return compId;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setCompId(int compId) {
-        this.compId = compId;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getLiquorId() {
@@ -56,7 +63,7 @@ public class Details {
     public String toString() {
         return "Details{" +
                 "detailsId=" + detailsId +
-                ", compId=" + compId +
+                ", compId=" + orderId +
                 ", liquorId=" + liquorId +
                 ", number=" + number +
                 '}';

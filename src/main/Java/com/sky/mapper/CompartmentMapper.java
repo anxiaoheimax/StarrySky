@@ -41,4 +41,8 @@ public interface CompartmentMapper {
     //==============================================预定/退订==============================================
     @Update("UPDATE compartment SET compState=#{compState},reserve_date=#{reserve_date} WHERE compId=#{compId}")
     public int reserveOrUnsubscribe(Compartment compartment);
+
+    //查空闲
+    @Select("SELECT * FROM compartment where compState=1")
+    public List<Compartment> selectcomp();
 }

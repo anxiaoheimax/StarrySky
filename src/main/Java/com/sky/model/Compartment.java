@@ -21,7 +21,9 @@ public class Compartment {
     public Compartment() {
     }
 
-    public Compartment(int compId,String compName, int comptype) {
+
+
+    public Compartment(int compId, String compName, int comptype) {
         this.compId = compId;
         this.compName = compName;
         this.comptype = comptype;

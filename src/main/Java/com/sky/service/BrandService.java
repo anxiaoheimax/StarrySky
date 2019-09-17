@@ -33,14 +33,17 @@ public class BrandService {
         return kindMapper.findKind();
     }
     //==========================================================添加=====================================================
+    @Transactional
     public Boolean addBrand(Brand brand){
         return brandMapper.addBrand(brand)>0;
     }
     //=========================================================删除=============================================
+    @Transactional
     public Boolean deleteBrand(int brandId){
         return brandMapper.deleteBrand(brandId)>0;
     }
     //===========================================================修改=============================================
+    @Transactional
     public Boolean updateBrand(Brand brand){
         return brandMapper.updateBrand(brand)>0;
     }

@@ -1,7 +1,6 @@
 package com.sky.Controller;
 
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sky.model.Liquor;
 import com.sky.model.Page;
 import com.sky.service.LiquorService;
@@ -14,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("/Liquor")
@@ -79,6 +78,7 @@ System.out.println(liquorPage.getPageNow()+""+liquorPage.getPageRows());
         findByPage.put("code",0);
         findByPage.put("msg","");
         findByPage.put("count",liquorByPage.getTotalRows());
+        findByPage.put("totalPages",liquorByPage.getTotalPages());
         findByPage.put("data",liquorByPage.getDatas());
         return findByPage;
     }

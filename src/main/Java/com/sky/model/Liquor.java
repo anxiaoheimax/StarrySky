@@ -3,12 +3,13 @@ package com.sky.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
 import java.util.Date;
 
 //酒的实体类
 
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
-public class Liquor {
+public class Liquor implements Serializable {
     //id
     private int liquorId;
     //酒名
